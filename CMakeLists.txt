@@ -60,7 +60,7 @@ if(BUILD_TESTING)
   ament_add_gtest(test_parser test/srdf_parser.test)
 
   add_definitions(-DTEST_RESOURCE_LOCATION="${CMAKE_SOURCE_DIR}/test/resources")
-  execute_process(COMMAND bash -c "locale -a | grep -q ^nl_NL"
+  execute_process(COMMAND bash -c "locale -a | grep -q ^en_US"
     RESULT_VARIABLE TEST_LOCALE
     OUTPUT_QUIET ERROR_QUIET)
   if (TEST_LOCALE)
