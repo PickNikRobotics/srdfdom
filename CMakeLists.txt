@@ -15,12 +15,12 @@ find_package(console_bridge REQUIRED)
 find_package(urdfdom_headers REQUIRED)
 find_package(ament_cmake REQUIRED)
 find_package(urdf REQUIRED)
-find_package(tinyxml_vendor REQUIRED)
+find_package(tinyxml2_vendor REQUIRED)
 
 include_directories(include ${rclcpp_INCLUDE_DIRS}
   ${rmw_implementation_INCLUDE_DIRS}
   ${Boost_INCLUDE_DIR}
-  ${TinyXML_INCLUDE_DIRS}
+  ${TinyXML2_INCLUDE_DIRS}
   ${console_bridge_INCLUDE_DIRS}
   ${urdfdom_headers_INCLUDE_DIRS}
   ${urdf_INCLUDE_DIRS}
@@ -32,7 +32,7 @@ add_library(${PROJECT_NAME} SHARED
   src/srdf_writer.cpp
 )
 ament_target_dependencies(${PROJECT_NAME}
-  ${TinyXML_LIBRARIES}
+  ${TinyXML2_LIBRARIES}
   ${console_bridge_LIBRARIES}
   urdfdom_headers
   urdf
