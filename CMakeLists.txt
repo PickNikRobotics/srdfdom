@@ -10,21 +10,15 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
+find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
 find_package(Boost REQUIRED)
 find_package(console_bridge REQUIRED)
 find_package(urdfdom_headers REQUIRED)
-find_package(ament_cmake REQUIRED)
 find_package(urdf REQUIRED)
 find_package(tinyxml_vendor REQUIRED)
 
-include_directories(include ${rclcpp_INCLUDE_DIRS}
-  ${rmw_implementation_INCLUDE_DIRS}
-  ${Boost_INCLUDE_DIR}
-  ${TinyXML_INCLUDE_DIRS}
-  ${console_bridge_INCLUDE_DIRS}
-  ${urdfdom_headers_INCLUDE_DIRS}
-  ${urdf_INCLUDE_DIRS}
-  ${std_msgs_INCLUDE_DIRS}
+include_directories(include
 )
 
 add_library(${PROJECT_NAME} SHARED
@@ -32,10 +26,12 @@ add_library(${PROJECT_NAME} SHARED
   src/srdf_writer.cpp
 )
 ament_target_dependencies(${PROJECT_NAME}
-  ${TinyXML_LIBRARIES}
-  ${console_bridge_LIBRARIES}
+  rclcpp
+  Boost
+  console_bridge
   urdfdom_headers
   urdf
+  tinyxml_vendor
 )
 
 ament_export_libraries(${PROJECT_NAME})
@@ -77,4 +73,5 @@ ament_export_dependencies(tinyxml_vendor)
 ament_export_dependencies(console_bridge)
 ament_export_dependencies(urdfdom_headers)
 ament_export_dependencies(urdf)
+ament_export_dependencies(Boost)
 ament_package()
